@@ -1,0 +1,25 @@
+# Entorno virtual de Python
+venv/
+.venv/
+env/
+
+# Archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Metadatos de Git
+.git/
+.gitignore
+
+# Archivos de configuración de IDEs
+.vscode/
+.idea/
+
+# Archivos de Docker que no deben estar en la imagen
+Dockerfile
+.dockerignore
+
+# Archivos de log
+*.log
