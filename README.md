@@ -1,20 +1,20 @@
-OSINT Web Domain Scanner Microservice
+# OSINT Web Domain Scanner Microservice
 This project is a microservice designed to gather Open Source Intelligence (OSINT) on a specific web domain. It acts as a RESTful API that accepts a domain name and returns a public data set, including WHOIS information and a list of known subdomains.
 The project is built following the principles of Clean Architecture and Domain-Driven Design (DDD), ensuring a clear separation of concerns across Domain, Application, Infrastructure, and Presentation layers.
-✨ Key Features
+# ✨ Key Features
 RESTful API: Exposes an endpoint to programmatically initiate domain scans.
 WHOIS Data Collection: Retrieves WHOIS records for the requested domain.
 Subdomain Enumeration: Identifies associated subdomains (mock implementation).
 Database Persistence: Stores the results of each scan in a SQL Server database.
 Clean Architecture: A decoupled design that promotes maintainability and extensibility.
 Dockerized Environment: Ready to run in any environment that supports Docker and Docker Compose.
-🏗️ Architecture
+# 🏗️ Architecture
 The project is structured into the following layers, ensuring dependencies point inwards toward the domain:
 domain/: Contains the core business logic and entities, completely independent of any technology or framework.
 application/: Orchestrates the use cases (application logic) and defines the interfaces (contracts) that the infrastructure layer must implement.
 infrastructure/: Holds the concrete implementations of the interfaces, such as external data providers (WHOIS) and the database repository (SQLAlchemy for SQL Server).
 presentation/: The outermost layer, which exposes the functionality through a RESTful API built with FastAPI.
-🚀 Getting Started
+# 🚀 Getting Started
 Follow these steps to set up and run the development environment locally.
 Prerequisites
 Docker
@@ -30,14 +30,14 @@ Create a file named .env in the project root. You can copy the example file if y
 # Create and edit the .env file
 
 Add your SQL Server connection details to the .env file. Use host.docker.internal as the server address to allow the Docker container to connect to a service running on your host machine.
-# .env
+.env
 # For SQL Server Authentication
 DB_CONNECTION_STRING="mssql+pyodbc://YOUR_SQL_USER:YOUR_SECURE_PASSWORD@host.docker.internal/ScannerDB?driver=ODBC+Driver+17+for+SQL+Server&TrustServerCertificate=yes"
 
 # For Windows Authentication (Note: This is complex from a Linux container and not recommended)
-# DB_CONNECTION_STRING="mssql+pyodbc://host.docker.internal/ScannerDB?driver=ODBC+Driver+17+for+SQL+Server&Trusted_Connection=yes&TrustServerCertificate=yes"
+DB_CONNECTION_STRING="mssql+pyodbc://host.docker.internal/ScannerDB?driver=ODBC+Driver+17+for+SQL+Server&Trusted_Connection=yes&TrustServerCertificate=yes"
 
-Important: Ensure your SQL Server is configured to:
+# Important: Ensure your SQL Server is configured to:
 Allow remote connections (TCP/IP protocol enabled).
 Accept connections on its port (default is 1433), and a firewall rule is in place on the host machine to allow incoming traffic on this port.
 Use "SQL Server and Windows Authentication mode" if you are using a SQL login.
